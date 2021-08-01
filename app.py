@@ -43,11 +43,15 @@ def handle_message(event):
     msg = event.message.text
     r = '哩供蝦!'
 
-    if msg == '貼圖':
+    if '貼圖' in msg:
         sticker_message = StickerSendMessage(
             package_id='1',
             sticker_id='1'
         )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
 
         return
 
@@ -59,6 +63,7 @@ def handle_message(event):
         r = '吃自己吧'
     elif '嗆' in msg:
         r = '剛好而已啦'
+
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
