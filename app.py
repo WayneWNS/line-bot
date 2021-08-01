@@ -43,11 +43,22 @@ def handle_message(event):
     msg = event.message.text
     r = '哩供蝦!'
 
+    if msg == '貼圖':
+        sticker_message = StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+        )
 
-    if msg == 'hi':
-        r = 'hi'
+        return
+
+    if msg in ['hi', 'Hi']:
+        r = '嗨!'
     elif msg == '吃飯沒':
         r = '還沒，你要請嗎?'
+    elif '午餐' in msg:
+        r = '吃自己吧'
+    elif '嗆' in msg:
+        r = '剛好而已啦'
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
